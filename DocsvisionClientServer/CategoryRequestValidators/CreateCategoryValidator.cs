@@ -15,8 +15,5 @@ public class CreateEmailValidator : AbstractValidator<CreateEmailRequest>, ICrea
             .WithMessage("Name is too short")
             .MaximumLength(20)
             .WithMessage("Name is too long");
-        RuleFor(request => request.Color)
-            .Cascade(CascadeMode.Stop)
-            .IsInEnum();
     }
 }

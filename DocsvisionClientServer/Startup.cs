@@ -1,3 +1,6 @@
+using DocsvisionClientServer.CategoryRequestValidators;
+using DocsvisionClientServer.Commands;
+using DocsvisionWebApp;
 using MassTransit;
 
 namespace DocsvisionClientServer;
@@ -13,13 +16,13 @@ public class Startup
     
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddTransient<ICreateEmailValidator, CreateEmailValidator>();
+        services.AddTransient<ICreateEmailCommand, CreateEmailCommand>();
+        
         services.AddControllers();
 
         services.AddMassTransit(mt =>
         {
-            // mt.AddConsumer<CreateCategoryConsumer>();
-            // mt.AddConsumer<FindCategoryConsumer>();
-
             mt.UsingRabbitMq((context, config) =>
             {
                 config.Host("localhost", "/", host =>
@@ -27,9 +30,8 @@ public class Startup
                     host.Username("guest");
                     host.Password("guest");
                 });
-                // config.ReceiveEndpoint("createCategory", ep => ep.ConfigureConsumer<CreateCategoryConsumer>(context));
-                // config.ReceiveEndpoint("findCategory", ep => ep.ConfigureConsumer<FindCategoryConsumer>(context));
             });
+            mt.AddRequestClient<CreateEmailRequest>(new Uri("rabbitmq://localhost/createEmail"));
         });
         services.AddMassTransitHostedService();
     }

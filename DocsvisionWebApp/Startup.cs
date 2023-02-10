@@ -13,15 +13,12 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        // services.AddTransient<ICreateCategoryValidator, CreateCategoryValidator>();
-        // services.AddTransient<IFindCategoryValidator, FindCategoryValidator>();
-        // services.AddTransient<ICreateCategoryCommand, CreateCategoryCommand>();
-        // services.AddTransient<IFindCategoryCommand, FindCategoryCommand>();
-        
         services.AddControllers();
 
         services.AddMassTransit(mt =>
         {
+            mt.AddConsumer<CreateEmailConsumer>();
+            
             mt.UsingRabbitMq((context, config) =>
             {
                 config.Host("localhost", "/", host =>
@@ -29,9 +26,8 @@ public class Startup
                     host.Username("guest");
                     host.Password("guest");
                 });
+                config.ReceiveEndpoint("createEmail", ep => ep.ConfigureConsumer<CreateEmailConsumer>(context));
             });
-            // mt.AddRequestClient<CreateCategoryRequest>(new Uri("rabbitmq://localhost/createCategory"));
-            // mt.AddRequestClient<FindCategoryRequest>(new Uri("rabbitmq://localhost/findCategory"));
         });
         services.AddMassTransitHostedService();
     }
