@@ -1,3 +1,5 @@
+using DocsvisionClientServer.Requests;
+using DocsvisionClientServer.Responses;
 using DocsvisionWebApp.EntityFramework;
 using DocsvisionWebApp.Mappers;
 using MassTransit;

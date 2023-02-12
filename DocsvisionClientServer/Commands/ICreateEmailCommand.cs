@@ -1,4 +1,5 @@
-using DocsvisionWebApp;
+using DocsvisionClientServer.Requests;
+using DocsvisionClientServer.Responses;
 
 namespace DocsvisionClientServer.Commands;
 

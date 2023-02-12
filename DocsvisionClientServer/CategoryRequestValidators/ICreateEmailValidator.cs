@@ -1,4 +1,4 @@
-using DocsvisionWebApp;
+using DocsvisionClientServer.Requests;
 using FluentValidation;
 
 namespace DocsvisionClientServer.CategoryRequestValidators;

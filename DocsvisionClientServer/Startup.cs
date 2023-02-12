@@ -1,6 +1,6 @@
 using DocsvisionClientServer.CategoryRequestValidators;
 using DocsvisionClientServer.Commands;
-using DocsvisionWebApp;
+using DocsvisionClientServer.Requests;
 using MassTransit;
 
 namespace DocsvisionClientServer;

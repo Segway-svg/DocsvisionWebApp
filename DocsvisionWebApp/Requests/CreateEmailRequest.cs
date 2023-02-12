@@ -1,4 +1,4 @@
-namespace DocsvisionWebApp;
+namespace DocsvisionClientServer.Requests;
 
 public class CreateEmailRequest
 {

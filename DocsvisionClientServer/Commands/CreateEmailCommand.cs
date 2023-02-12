@@ -1,5 +1,6 @@
 using DocsvisionClientServer.CategoryRequestValidators;
-using DocsvisionWebApp;
+using DocsvisionClientServer.Requests;
+using DocsvisionClientServer.Responses;
 using MassTransit;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 

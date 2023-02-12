@@ -1,6 +1,6 @@
-namespace DocsvisionWebApp;
+namespace DocsvisionClientServer.Responses;
 
-public class CreateEmailResponse
+public class CreateSenderResponse
 {
     public Guid? Id { get; set; }
     public bool IsSuccess { get; set; }
