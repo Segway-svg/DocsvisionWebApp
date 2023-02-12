@@ -9,4 +9,6 @@ public class DbEmail
     public DbSender Sender { get; set; }
     public string Content { get; set; }
     public DateTime CreationDate { get; set; }
+    public ICollection<DbEmailReceiver> EmailsReceivers { get; set; } = new List<DbEmailReceiver>();
+
 }

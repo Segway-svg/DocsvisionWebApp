@@ -11,9 +11,17 @@ public class EmailRepository
         {
             dbContext.Database.Migrate();
             
-            if (dbContext.Senders.FirstOrDefault(dbS => dbS.Id == email.SenderId) != null)
+            if (dbContext.Senders.FirstOrDefault(dbS => dbS.Id == email.SenderId) != null &&
+                dbContext.Receivers.FirstOrDefault(dbR => dbR.Id == email.ReceiverId) != null)
             {
                 dbContext.Emails.Add(email);
+
+                var dbEmailReceiver = new DbEmailReceiver();
+                dbEmailReceiver.Id = new Guid();
+                dbEmailReceiver.EmailId = email.Id;
+                dbEmailReceiver.ReceiverId = email.ReceiverId;
+                dbContext.EmailsReceivers.Add(dbEmailReceiver);
+
                 await dbContext.SaveChangesAsync();
             }
             else

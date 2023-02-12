@@ -56,7 +56,7 @@ public class CreateEmailCommand : ICreateEmailCommand
                 IsSuccess = false,
                 Errors = new List<string>()
             };
-            failureResponse.Errors.Add("There is not such Receiver");
+            failureResponse.Errors.Add("There is not such Receiver or Sender");
             return failureResponse;
         }
         

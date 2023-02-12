@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DocsvisionWebApp.EntityFramework.Repositories;
 
-public class SenderRepository
+public class ReceiverRepository
 {
-    public async Task<Guid?> CreateSenderAsync(DbSender sender)
+    public async Task<Guid?> CreateReceiverAsync(DbReceiver receiver)
     {
         using (var dbContext = new EmailDbContext())
         {
             dbContext.Database.Migrate();
-            dbContext.Senders.Add(sender);
+            dbContext.Receivers.Add(receiver);
             await dbContext.SaveChangesAsync();
         }
-        return sender.Id;
+        return receiver.Id;
     }
 }

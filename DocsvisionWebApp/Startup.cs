@@ -20,6 +20,7 @@ public class Startup
         {
             mt.AddConsumer<CreateEmailConsumer>();
             mt.AddConsumer<CreateSenderConsumer>();
+            mt.AddConsumer<CreateReceiverConsumer>();
             
             mt.UsingRabbitMq((context, config) =>
             {
@@ -30,6 +31,7 @@ public class Startup
                 });
                 config.ReceiveEndpoint("createEmail", ep => ep.ConfigureConsumer<CreateEmailConsumer>(context));
                 config.ReceiveEndpoint("createSender", ep => ep.ConfigureConsumer<CreateSenderConsumer>(context));
+                config.ReceiveEndpoint("createReceiver", ep => ep.ConfigureConsumer<CreateReceiverConsumer>(context));
             });
         });
         services.AddMassTransitHostedService();

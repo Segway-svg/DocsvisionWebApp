@@ -1,8 +1,10 @@
 using DocsvisionClientServer.CategoryRequestValidators;
 using DocsvisionClientServer.CategoryRequestValidators.CreateEmailValidator;
+using DocsvisionClientServer.CategoryRequestValidators.CreateReceiversValidators;
 using DocsvisionClientServer.CategoryRequestValidators.CreateSenderValidator;
 using DocsvisionClientServer.Commands;
 using DocsvisionClientServer.Commands.CreateEmailCommand;
+using DocsvisionClientServer.Commands.CreateReceiverCommand;
 using DocsvisionClientServer.Commands.CreateSenderCommand;
 using DocsvisionClientServer.Requests;
 using MassTransit;
@@ -24,6 +26,8 @@ public class Startup
         services.AddTransient<ICreateEmailCommand, CreateEmailCommand>();
         services.AddTransient<ICreateSenderValidator, CreateSenderValidator>();
         services.AddTransient<ICreateSenderCommand, CreateSenderCommand>();
+        services.AddTransient<ICreateReceiverValidator, CreateReceiverValidator>();
+        services.AddTransient<ICreateReceiverCommand, CreateReceiverCommand>();
         
         services.AddControllers();
 
@@ -39,6 +43,7 @@ public class Startup
             });
             mt.AddRequestClient<CreateEmailRequest>(new Uri("rabbitmq://localhost/createEmail"));
             mt.AddRequestClient<CreateSenderRequest>(new Uri("rabbitmq://localhost/createSender"));
+            mt.AddRequestClient<CreateReceiverRequest>(new Uri("rabbitmq://localhost/createReceiver"));
         });
         services.AddMassTransitHostedService();
     }
