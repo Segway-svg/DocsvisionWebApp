@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 namespace DocsvisionWebApp.EntityFramework.Entities;
 
 public class DbReceiver

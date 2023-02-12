@@ -6,6 +6,9 @@ namespace DocsvisionWebApp.EntityFramework;
 public class EmailDbContext : DbContext
 {
     public DbSet<DbEmail> Emails { get; set; }
+    public DbSet<DbReceiver> Receivers { get; set; }
+    public DbSet<DbSender> Senders { get; set; }
+    public DbSet<DbEmailReceiver> EmailsReceivers { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

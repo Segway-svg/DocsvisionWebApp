@@ -6,6 +6,7 @@ public class DbEmail
     public string Name { get; set; }
     public Guid ReceiverId { get; set; }
     public Guid SenderId { get; set; }
+    public DbSender Sender { get; set; }
     public string Content { get; set; }
     public DateTime CreationDate { get; set; }
 }
