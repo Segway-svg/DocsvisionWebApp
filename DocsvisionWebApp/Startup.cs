@@ -1,3 +1,4 @@
+using DocsvisionWebApp.Consumer;
 using MassTransit;
 
 namespace DocsvisionWebApp;
@@ -18,6 +19,7 @@ public class Startup
         services.AddMassTransit(mt =>
         {
             mt.AddConsumer<CreateEmailConsumer>();
+            mt.AddConsumer<CreateSenderConsumer>();
             
             mt.UsingRabbitMq((context, config) =>
             {
@@ -27,6 +29,7 @@ public class Startup
                     host.Password("guest");
                 });
                 config.ReceiveEndpoint("createEmail", ep => ep.ConfigureConsumer<CreateEmailConsumer>(context));
+                config.ReceiveEndpoint("createSender", ep => ep.ConfigureConsumer<CreateSenderConsumer>(context));
             });
         });
         services.AddMassTransitHostedService();

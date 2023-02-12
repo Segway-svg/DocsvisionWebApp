@@ -1,6 +1,7 @@
+using System.Net;
+using DocsvisionClientServer.Commands.CreateSenderCommand;
 using DocsvisionClientServer.Requests;
 using DocsvisionClientServer.Responses;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocsvisionClientServer.Controllers;
@@ -10,11 +11,16 @@ namespace DocsvisionClientServer.Controllers;
 public class SenderController : ControllerBase
 {
     [HttpPost("post")]
-    public async Task<CreateSenderResponse> PostGroup(
-        [FromServices] IRequestClient<CreateSenderRequest> requestClient,
+    public async Task<CreateSenderResponse> PostSender(
+        [FromServices] ICreateSenderCommand command,
         [FromBody] CreateSenderRequest request)
     {
-        var response = await requestClient.GetResponse<CreateSenderResponse>(request);
-        return response.Message;
+        var response = await command.Execute(request);
+        
+        HttpContext.Response.StatusCode = response.IsSuccess ? 
+            (int)HttpStatusCode.Created : 
+            (int)HttpStatusCode.NotFound;
+
+        return response;
     }
 }

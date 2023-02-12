@@ -1,13 +1,10 @@
-using DocsvisionClientServer.CategoryRequestValidators;
 using DocsvisionClientServer.CategoryRequestValidators.CreateSenderValidator;
-using DocsvisionClientServer.Commands.CreateEmailCommand;
 using DocsvisionClientServer.Requests;
 using DocsvisionClientServer.Responses;
 using MassTransit;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace DocsvisionClientServer.Commands.CreateSenderCommand;
-
 
 public class CreateSenderCommand : ICreateSenderCommand
 {
@@ -24,13 +21,13 @@ public class CreateSenderCommand : ICreateSenderCommand
     {
         if (request == null)
         {
-            var message = "Request is empty";
             var failureResponse = new CreateSenderResponse()
             {
+                Id = null,
                 IsSuccess = false,
                 Errors = new List<string>()
             };
-            failureResponse.Errors.Add(message);
+            failureResponse.Errors.Add("Request is empty");
             return failureResponse;
         }
 
@@ -40,6 +37,7 @@ public class CreateSenderCommand : ICreateSenderCommand
         {
             var failureResponse = new CreateSenderResponse()
             {  
+                Id = null,
                 IsSuccess = false,
                 Errors = validationResult.Errors.Select(err => err.ErrorMessage).ToList()
             };

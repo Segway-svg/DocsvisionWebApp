@@ -2,7 +2,6 @@ using System.Net;
 using DocsvisionClientServer.Commands.CreateEmailCommand;
 using DocsvisionClientServer.Requests;
 using DocsvisionClientServer.Responses;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocsvisionClientServer.Controllers;
@@ -12,7 +11,7 @@ namespace DocsvisionClientServer.Controllers;
 public class EmailController : ControllerBase
 {
     [HttpPost("post")]
-    public async Task<CreateEmailResponse> PostGroup(
+    public async Task<CreateEmailResponse> PostEmail(
         [FromServices] ICreateEmailCommand command,
         [FromBody] CreateEmailRequest request)
     {
