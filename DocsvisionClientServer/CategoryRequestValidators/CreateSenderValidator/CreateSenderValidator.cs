@@ -1,11 +1,12 @@
+using DocsvisionClientServer.CategoryRequestValidators.CreateEmailValidator;
 using DocsvisionClientServer.Requests;
 using FluentValidation;
 
-namespace DocsvisionClientServer.CategoryRequestValidators;
+namespace DocsvisionClientServer.CategoryRequestValidators.CreateSenderValidator;
 
-public class CreateEmailValidator : AbstractValidator<CreateEmailRequest>, ICreateEmailValidator
+public class CreateSenderValidator : AbstractValidator<CreateSenderRequest>, ICreateSenderValidator
 {
-    public CreateEmailValidator()
+    public CreateSenderValidator()
     {
         RuleFor(request => request.Name)
             .Cascade(CascadeMode.Stop)

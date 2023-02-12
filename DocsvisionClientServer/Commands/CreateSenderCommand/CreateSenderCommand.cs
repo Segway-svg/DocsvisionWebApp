@@ -1,29 +1,31 @@
 using DocsvisionClientServer.CategoryRequestValidators;
+using DocsvisionClientServer.CategoryRequestValidators.CreateSenderValidator;
+using DocsvisionClientServer.Commands.CreateEmailCommand;
 using DocsvisionClientServer.Requests;
 using DocsvisionClientServer.Responses;
 using MassTransit;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
-namespace DocsvisionClientServer.Commands;
+namespace DocsvisionClientServer.Commands.CreateSenderCommand;
 
 
-public class CreateEmailCommand : ICreateEmailCommand
+public class CreateSenderCommand : ICreateSenderCommand
 {
-    private IRequestClient<CreateEmailRequest> _request;
-    private ICreateEmailValidator _validator;
+    private IRequestClient<CreateSenderRequest> _request;
+    private ICreateSenderValidator _validator;
 
-    public CreateEmailCommand(ICreateEmailValidator validator, IRequestClient<CreateEmailRequest> request)
+    public CreateSenderCommand(ICreateSenderValidator validator, IRequestClient<CreateSenderRequest> request)
     {
         _validator = validator;
         _request = request;
     }
 
-    public async Task<CreateEmailResponse> Execute(CreateEmailRequest request)
+    public async Task<CreateSenderResponse> Execute(CreateSenderRequest request)
     {
         if (request == null)
         {
             var message = "Request is empty";
-            var failureResponse = new CreateEmailResponse()
+            var failureResponse = new CreateSenderResponse()
             {
                 IsSuccess = false,
                 Errors = new List<string>()
@@ -36,7 +38,7 @@ public class CreateEmailCommand : ICreateEmailCommand
 
         if (!validationResult.IsValid)
         {
-            var failureResponse = new CreateEmailResponse()
+            var failureResponse = new CreateSenderResponse()
             {  
                 IsSuccess = false,
                 Errors = validationResult.Errors.Select(err => err.ErrorMessage).ToList()
@@ -44,7 +46,7 @@ public class CreateEmailCommand : ICreateEmailCommand
             return failureResponse;
         }
         
-        var response = await _request.GetResponse<CreateEmailResponse>(request);
+        var response = await _request.GetResponse<CreateSenderResponse>(request);
         return response.Message;
     }
 }

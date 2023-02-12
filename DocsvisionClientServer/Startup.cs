@@ -1,5 +1,7 @@
 using DocsvisionClientServer.CategoryRequestValidators;
+using DocsvisionClientServer.CategoryRequestValidators.CreateEmailValidator;
 using DocsvisionClientServer.Commands;
+using DocsvisionClientServer.Commands.CreateEmailCommand;
 using DocsvisionClientServer.Requests;
 using MassTransit;
 

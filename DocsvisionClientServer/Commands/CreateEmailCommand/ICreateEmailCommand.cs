@@ -1,7 +1,7 @@
 using DocsvisionClientServer.Requests;
 using DocsvisionClientServer.Responses;
 
-namespace DocsvisionClientServer.Commands;
+namespace DocsvisionClientServer.Commands.CreateEmailCommand;
 
 public interface ICreateEmailCommand
 {
