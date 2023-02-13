@@ -1,0 +1,64 @@
+﻿<Window x:Class="WpfViewApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:WpfViewApp.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1100">
+    
+    <Window.DataContext>
+        <viewmodel:ViewModel />
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            
+        </Grid.RowDefinitions>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TB1}" />
+        <TextBox Grid.Column="3" Grid.Row="1" Text="{Binding TB2}" />
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding TB3}" />
+        <TextBox Grid.Column="3" Grid.Row="4" Text="{Binding TB4}" />
+        
+        <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding LTB1}"/>
+        <TextBox Grid.Column="3" Grid.Row="7" Text="{Binding LTB2}"/>
+        <TextBox Grid.Column="5" Grid.Row="2" Text="{Binding LTB3}"/>
+        
+        <Button Grid.Column="1" Grid.Row="9" Content="GenerateReceiver" Command="{Binding LaunchReceiverHttp}" />
+        <Button Grid.Column="3" Grid.Row="9" Content="GenerateSender" Command="{Binding LaunchSenderHttp}" />
+        <Button Grid.Column="5" Grid.Row="3" Content="CreateEmail" Command="{Binding LaunchEmailHttp}" />
+        
+        
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Enter Name"/>
+        <TextBlock Grid.Column="3" Grid.Row="2" Text="Enter Content"/>
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="Enter Receiver GuiId"/>
+        <TextBlock Grid.Column="3" Grid.Row="5" Text="Enter Sender Guid"/>
+        <TextBlock Grid.Column="1" Grid.Row="8" Text="Generated Receiver Guid"/>
+        <TextBlock Grid.Column="3" Grid.Row="8" Text="Generated Sender Guid"/>
+        
+        <!-- <Label Grid.Column="1" Grid.Row="7" Content="{Binding L1}"/> -->
+        <!-- <Label Grid.Column="3" Grid.Row="7" Content="{Binding L2}"/> -->
+        <!-- <Label Grid.Column="5" Grid.Row="2" Content="{Binding L3}"/> -->
+    </Grid>
+</Window>

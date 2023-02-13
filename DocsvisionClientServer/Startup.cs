@@ -1,3 +1,4 @@
+using System.Text;
 using DocsvisionClientServer.CategoryRequestValidators;
 using DocsvisionClientServer.CategoryRequestValidators.CreateEmailValidator;
 using DocsvisionClientServer.CategoryRequestValidators.CreateReceiversValidators;
@@ -7,7 +8,9 @@ using DocsvisionClientServer.Commands.CreateEmailCommand;
 using DocsvisionClientServer.Commands.CreateReceiverCommand;
 using DocsvisionClientServer.Commands.CreateSenderCommand;
 using DocsvisionClientServer.Requests;
+using DocsvisionClientServer.Responses;
 using MassTransit;
+using Newtonsoft.Json;
 
 namespace DocsvisionClientServer;
 

@@ -13,6 +13,6 @@ public class EmailDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(
-            @"Server=localhost\sqlexpress;Database=LettersDB;Trusted_Connection=True;TrustServerCertificate=True");
+            @"Server=localhost\sqlexpress;Database=NewLettersDB;Trusted_Connection=True;TrustServerCertificate=True");
     }
 }
